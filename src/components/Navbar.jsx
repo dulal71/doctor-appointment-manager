@@ -3,12 +3,16 @@
 
 import { useState, useEffect } from "react";
 
-import { BookOpen, Menu, X, User, LogOut, LayoutDashboard, Cross, Stethoscope } from "lucide-react";
+import { Menu, X, User, LogOut, LayoutDashboard, Cross, Stethoscope, LockOpen, UserCog } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 import Image from "next/image"
 import { usePathname } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 const Navbar = () => {
+  const {data:session}=authClient.useSession()
+  const user = session?.user
+  console.log(user);
   const pathname = usePathname()
      const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -24,7 +28,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="p-2 bg-blue-600 rounded-xl group-hover:rotate-12 transition-transform">
+              <div className="p-2 rounded-xl group-hover:rotate-12 bg-linear-to-r from-blue-600 to-cyan-500 transition-transform">
                 <Stethoscope className="w-8 h-8 text-white" />
               </div>
               <span className=" text-3xl font-semibold tracking-tight text-slate-900">
@@ -33,7 +37,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex gap-8 items-center">
+          <div className="hidden md:flex gap-6 items-center">
           <Link
   href="/"
   className={`px-4 py-1 rounded-lg font-medium text-lg transition-all duration-300
@@ -74,16 +78,23 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center gap-4">
 
-            <>
-              <Link href="/login" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">Login</Link>
-              <Link href="/register">
-
-                <Button color="primary" className="font-bold rounded-full px-8 shadow-lg shadow-blue-600/20">
-                  Join Free
-                </Button>
-              </Link>
+{
+  user? <Avatar>
+        <Avatar.Image alt="John Doe" referrerPolicy="no-referrer" src={user?.image} />
+        <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+      </Avatar>    :<>
+          <Link href="/login" className=" font-medium text-slate-700 hover:text-blue-600 transition-colors">
+            <Button className="flex items-center gap-1 bg-linear-to-r from-blue-600 to-cyan-500"><LockOpen /> Login</Button>
+           </Link>
+        
+           <Link href="/register">
+ <Button className="font-medium bg-black flex items-center gap-1">
+          <UserCog /> Register
+</Button>
+   </Link>
             </>
-
+}
+            
             <div className="relative group">
               <button className="flex items-center gap-3 p-1 rounded-full hover:bg-muted transition-colors border border-transparent hover:border-border">
                 <Image

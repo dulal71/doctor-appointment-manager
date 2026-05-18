@@ -3,11 +3,13 @@
 
 import { useState, useEffect } from "react";
 
-import { BookOpen, Menu, X, User, LogOut, LayoutDashboard } from "lucide-react";
+import { BookOpen, Menu, X, User, LogOut, LayoutDashboard, Cross, Stethoscope } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import Image from "next/image"
+import { usePathname } from "next/navigation";
 const Navbar = () => {
+  const pathname = usePathname()
      const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(()=>{
@@ -23,18 +25,50 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2 group">
               <div className="p-2 bg-blue-600 rounded-xl group-hover:rotate-12 transition-transform">
-                <BookOpen className="w-6 h-6 text-white" />
+                <Stethoscope className="w-8 h-8 text-white" />
               </div>
-              <span className="font-extrabold text-2xl tracking-tight text-slate-900">
+              <span className=" text-3xl font-semibold tracking-tight text-slate-900">
                 DocAppoint
               </span>
             </Link>
           </div>
 
           <div className="hidden md:flex gap-8 items-center">
-            <Link href="/" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">Home</Link>
-            <Link href="/all-appointment" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">All-Appointment</Link>
-            <Link href="/dashboard" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">Dashboard</Link>
+          <Link
+  href="/"
+  className={`px-4 py-1 rounded-lg font-medium text-lg transition-all duration-300
+  ${
+    pathname === "/"
+      ? "bg-blue-600 text-white shadow-md"
+      : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+  }`}
+>
+  Home
+</Link>
+
+<Link
+  href="/all-appointment"
+  className={`px-4 py-1 rounded-lg font-medium text-lg transition-all duration-300
+  ${
+    pathname === "/all-appointment"
+      ? "bg-blue-600 text-white shadow-md"
+      : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+  }`}
+>
+  Doctor
+</Link>
+
+<Link
+  href="/dashboard"
+  className={`px-4 py-1 rounded-lg font-medium text-lg transition-all duration-300
+  ${
+    pathname === "/dashboard"
+      ? "bg-blue-600 text-white shadow-md"
+      : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+  }`}
+>
+  Dashboard
+</Link>
 
           </div>
 

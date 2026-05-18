@@ -1,5 +1,6 @@
 "use client";
-import { authClient } from "@/lib/auth-client";
+
+import { authClient } from "@/app/lib/auth-client";
 import {Check, EyeSlash} from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form, Input, InputGroup, Label, TextField} from "@heroui/react";
 import { Eye, Stethoscope } from "lucide-react";
@@ -11,6 +12,8 @@ import toast from "react-hot-toast";
 
 const Login = () => {
      const [isVisible, setIsVisible] = useState(false);
+  //email login   
+     
      const handleLogin=async(e)=>{
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
@@ -27,6 +30,21 @@ if(data){
     toast.error("Login failed")
 }
      }
+
+     //google login
+     const googleLogIn=async()=>{
+       const data = await authClient.signIn.social({
+         provider: "google",
+       });
+      if(data){
+         toast.success('login successfully')
+          redirect('/')
+     }else{
+         toast.error("login up failed")
+     } 
+     } 
+
+
     return (
         <div className="flex items-center justify-center py-14">
        <div className="bg-white shadow py-6 px-8 space-y-4 rounded-md">
@@ -93,7 +111,7 @@ if(data){
     <p className="text-center">Or login with</p>
     <div className="flex justify-evenly items-center">
 {/* google */}
-<div className="cursor-pointer flex items-center gap-2">
+<div onClick={googleLogIn} className="cursor-pointer flex items-center gap-2">
 <Image src="/assets/google-logo.webp" width={30} height={30} alt="google-logo" />
 Google
 </div>

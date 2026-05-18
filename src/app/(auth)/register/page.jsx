@@ -1,5 +1,6 @@
 'use client'
-import { authClient } from "@/lib/auth-client";
+
+import { authClient } from "@/app/lib/auth-client";
 import {Check, Envelope, Eye, EyeSlash, FloppyDisk} from "@gravity-ui/icons";
 import { Button, Description, FieldError, FieldGroup, Fieldset, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
 import { Stethoscope } from "lucide-react";
@@ -22,6 +23,7 @@ const Register = () => {
     image: newUser.imageUrl,
 
 });
+console.log(data);
 if(data){
     toast.success('Sign up successfully')
      redirect('/')
@@ -29,7 +31,18 @@ if(data){
     toast.error("sign up failed")
 }
 }
-   
+
+const googleSignIn=async()=>{
+  const data = await authClient.signIn.social({
+    provider: "google",
+  });
+ if(data){
+    toast.success('Sign up successfully')
+     redirect('/')
+}else{
+    toast.error("sign up failed")
+} 
+} 
       return (
         <div className="flex items-center justify-center py-14">
        <div className="bg-white  w-full max-w-xl  shadow py-6 px-8 space-y-4 rounded-md">
@@ -130,12 +143,12 @@ if(data){
     <p className="text-center">Or login with</p>
     <div className="flex justify-evenly items-center">
 {/* google */}
-<div className="cursor-pointer flex items-center gap-2">
+<div onClick={googleSignIn} className="cursor-pointer flex items-center gap-2 ">
 <Image src="/assets/google-logo.webp" width={30} height={30} alt="google-logo" />
 Google
 </div>
 {/* github */}
-<div className="cursor-pointer flex items-center gap-2">
+<div className="cursor-pointer flex items-center gap-2 ">
 <Image src="/assets/github-logo.png" width={25} height={25} alt="google-logo" />
 Github
 </div>

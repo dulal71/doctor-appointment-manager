@@ -3,18 +3,20 @@
 
 import { useState, useEffect } from "react";
 
-import { Menu, X, User, LogOut, LayoutDashboard, Cross, Stethoscope, LockOpen, UserCog } from "lucide-react";
+import { Menu, X, User, LogOut, LayoutDashboard, Cross, Stethoscope, LockOpen, UserCog, LogOutIcon } from "lucide-react";
 import Link from "next/link";
 import { Avatar, Button } from "@heroui/react";
 import Image from "next/image"
-import { usePathname } from "next/navigation";
-import { authClient } from "@/lib/auth-client";
+import { redirect, usePathname } from "next/navigation";
+import { authClient, useSession } from "@/app/lib/auth-client";
+
+
 
 
 const Navbar = () => {
-const {data : session }=authClient.useSession()
-const user=session?.user
-console.log(user);
+    const { data: session, isPending } =useSession();
+const user = session?.user
+
 
   const pathname = usePathname()
      const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,6 +26,12 @@ console.log(user);
    window.addEventListener("scroll", handleScroll); 
     return () => window.removeEventListener("scroll", handleScroll);
   },[])
+
+  const signOut=async()=>{
+    await authClient.signOut({
+ })
+  redirect("/login")
+  }
     return (
           <nav className={`sticky top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/70 backdrop-blur-md shadow-sm py-2" : "bg-slate-50 py-4"
       }`}>
@@ -82,10 +90,13 @@ console.log(user);
           <div className="hidden md:flex items-center gap-4">
 
 {
-  user? <Avatar>
+  user? <> <Avatar className="w-12 h-12">
         <Avatar.Image alt="John Doe" referrerPolicy="no-referrer" src={user?.image} />
         <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
-      </Avatar>    :<>
+      </Avatar>  
+      <Button onClick={signOut} className="flex items-center gap-1 bg-black hover:bg-red-700 transition-all duration-300">  <LogOutIcon /> Logout</Button>
+       </>   
+      :<>
           <Link href="/login" className=" font-medium text-slate-700 hover:text-blue-600 transition-colors">
             <Button className="flex items-center gap-1 bg-linear-to-r from-blue-600 to-cyan-500"><LockOpen /> Login</Button>
            </Link>
@@ -97,41 +108,9 @@ console.log(user);
    </Link>
             </>
 }
-            
-            <div className="relative group">
-              <button className="flex items-center gap-3 p-1 rounded-full hover:bg-muted transition-colors border border-transparent hover:border-border">
-                <Image
-                  width={40}
-                  height={40}
-                  src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=400"
-                  alt="avatar"
-                  className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-600/10"
-                />
-                <div className="text-left hidden lg:block">
-                  <p className="text-sm font-bold truncate max-w-25">Nazmus Sakib</p>
-                  <p className="text-[10px] text-slate-500">Student</p>
-                </div>
-              </button>
-              <div className="absolute right-0 top-12 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl hidden group-hover:flex flex-col py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                <div className="px-4 py-3 border-b border-slate-100">
-                  <p className="font-bold text-sm">Welcome back!</p>
-                  <p className="text-xs truncate text-slate-500">sakib@gmail.com</p>
-                </div>
-                <Link href="/dashboard" className="px-4 py-2 text-sm hover:bg-muted flex items-center gap-3 transition-colors">
-                  <LayoutDashboard className="w-4 h-4" /> Dashboard
-                </Link>
-                <Link href="/settings" className="px-4 py-2 text-sm hover:bg-muted flex items-center gap-3 transition-colors">
-                  <User className="w-4 h-4" /> Settings
-                </Link>
-                <button className="px-4 py-2 text-sm text-red-500 hover:bg-red-50 flex items-center gap-3 transition-colors text-left">
-                  <LogOut className="w-4 h-4" /> Log Out
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="md:hidden flex items-center">
+ </div>
+ {/* mobile menu */}
+          <div className="md:hidden flex items-center border border-gray-400 rounded-lg">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-lg hover:bg-muted transition-colors">
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -141,29 +120,93 @@ console.log(user);
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden px-4 pt-2 pb-6 space-y-2 bg-white border-b border-slate-200 animate-in slide-in-from-top duration-300">
-          <Link href="/" className="block px-4 py-3 text-base font-medium text-slate-900 hover:bg-slate-50 rounded-xl">Home</Link>
-          <Link href="/courses" className="block px-4 py-3 text-base font-medium text-slate-900 hover:bg-slate-50 rounded-xl">Courses</Link>
-          <Link href="/add-course" className="block px-4 py-3 text-base font-medium text-slate-900 hover:bg-slate-50 rounded-xl">Add Course</Link>
-          <Link href="/dashboard" className="block px-4 py-3 text-base font-medium text-slate-900 hover:bg-slate-50 rounded-xl">Dashboard</Link>
-          <div className="pt-4 border-t border-border mt-4">
+       <div className="md:hidden bg-white border-b border-slate-200 shadow-sm animate-in slide-in-from-top duration-900">
+  
+  {/* NAV LINKS */}
+  <div className="flex flex-col px-4 py-3 gap-1">
+    
+    <Link
+    onClick={() => setIsMenuOpen(false)}
+      href="/"
+      className={`px-3 py-2 rounded-lg font-medium text-base transition
+      ${pathname === "/" 
+        ? "bg-blue-50 text-blue-600 font-semibold" 
+        : "text-slate-700 hover:bg-slate-100"
+      }`}
+    >
+      Home
+    </Link>
 
-            <div className="grid grid-cols-2 gap-4">
-              <Link href="/login">
-                <Button href="/login" variant="bordered" className="rounded-xl">Login</Button>
-              </Link>
-              <Link href="/register">
-                <Button href="/register" color="primary" className="rounded-xl">Join Free</Button>
-              </Link>
-            </div>
+    <Link
+    onClick={() => setIsMenuOpen(false)}
+      href="/all-appointment"
+      className={`px-3 py-2 rounded-lg font-medium text-base transition
+      ${pathname === "/all-appointment" 
+        ? "bg-blue-50 text-blue-600 font-semibold" 
+        : "text-slate-700 hover:bg-slate-100"
+      }`}
+    >
+      Doctors
+    </Link>
 
-            <div className="flex flex-col gap-2">
-              <p className="px-4 text-xs font-bold text-muted-foreground uppercase tracking-wider">Account</p>
-              <button className="block w-full text-left px-4 py-3 text-base font-medium text-red-500 hover:bg-red-50 rounded-xl">Log Out</button>
-            </div>
+    <Link
+    onClick={() => setIsMenuOpen(false)}
+      href="/dashboard"
+      className={`px-3 py-2 rounded-lg font-medium text-base transition
+      ${pathname === "/dashboard" 
+        ? "bg-blue-50 text-blue-600 font-semibold" 
+        : "text-slate-700 hover:bg-slate-100"
+      }`}
+    >
+      Dashboard
+    </Link>
+  </div>
 
-          </div>
+  {/* USER SECTION */}
+  <div className="border-t border-slate-100 px-4 py-3 flex items-center justify-between">
+    
+    {user ? (
+      <div className="flex items-center gap-3">
+        <Avatar className="w-10 h-10">
+          <Avatar.Image
+            src={user?.image}
+            alt="user"
+            className="object-cover"
+          />
+          <Avatar.Fallback>
+            {user?.name?.charAt(0)}
+          </Avatar.Fallback>
+        </Avatar>
+
+        <div className="flex flex-col">
+          <p className="text-sm font-medium text-slate-800">
+            {user?.name}
+          </p>
+          <p className="text-xs text-slate-500">
+            Logged in
+          </p>
         </div>
+      </div>
+    ) : (
+      <div className="flex gap-2 w-full">
+        <Link href="/login" className="w-full">
+          <Button className="flex w-full items-center gap-1 bg-linear-to-r from-blue-600 to-cyan-500"><LockOpen /> Login</Button>
+        </Link>
+
+        <Link href="/register" className="w-full">
+         
+         <Button className=" w-full font-medium bg-black flex items-center gap-1">
+          <UserCog /> Register
+</Button>
+        </Link>
+      </div>
+    )}
+
+    {user && (
+       <Button onClick={signOut} className="flex items-center gap-1 bg-red-700 ">  <LogOutIcon /> Logout</Button>
+    )}
+  </div>
+</div>
       )}
     </nav>
     );

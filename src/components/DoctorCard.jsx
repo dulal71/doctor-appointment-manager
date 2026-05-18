@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
 
 const DoctorCard = ({doctor}) => {
-    console.log(doctor);
-    const {image,name,specialty}=doctor
+   
+    const {image,name,specialty,_id}=doctor
     return (
      <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden w-[300px]">
   
@@ -28,9 +29,11 @@ const DoctorCard = ({doctor}) => {
     </p>
 
     {/* Optional button */}
+    <Link href={`/all-appointment/${_id}`}>
     <button className="mt-3 w-full bg-[var(--primary)] text-white py-2 rounded-lg hover:bg-blue-700 transition">
       View Profile
     </button>
+    </Link>
   </div>
 </div>
     );

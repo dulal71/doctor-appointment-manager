@@ -9,10 +9,13 @@ import { Avatar, Button } from "@heroui/react";
 import Image from "next/image"
 import { usePathname } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+
+
 const Navbar = () => {
-  const {data:session}=authClient.useSession()
-  const user = session?.user
-  console.log(user);
+const {data : session }=authClient.useSession()
+const user=session?.user
+console.log(user);
+
   const pathname = usePathname()
      const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

@@ -1,7 +1,10 @@
 import { CalendarDays, Clock, UserRound, Phone, CreditCard } from "lucide-react";
+import DeleteAppoint from "./DeleteAppoint";
+import UpdateAppoint from "./UpdateAppoint";
 
 const AppointmentCard = ({ doctor }) => {
-  console.log("CARD DATA:", doctor);
+
+ 
 
   return (
    <div className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm hover:shadow-md transition-all my-4 max-w-md">
@@ -77,15 +80,11 @@ const AppointmentCard = ({ doctor }) => {
   </div>
 
   {/* Buttons */}
-  <div className="mt-4 flex gap-2">
+  <div className="mt-4 flex gap-10">
+ <UpdateAppoint doctor={doctor}></UpdateAppoint>
+    <DeleteAppoint doctor={doctor}></DeleteAppoint>
 
-    <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 rounded-lg transition">
-      Update
-    </button>
-
-    <button className="flex-1 bg-red-700 hover:bg-red-900 text-white text-sm py-2 rounded-lg transition">
-      Delete
-    </button>
+   
 
   </div>
 </div> 

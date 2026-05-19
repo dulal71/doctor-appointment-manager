@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-import { headers } from 'next/headers'
+// import { headers } from 'next/headers'
 
  
 // This function can be marked `async` if using `await` inside

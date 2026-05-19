@@ -1,21 +1,52 @@
 
 "use client";
 import { authClient } from "@/app/lib/auth-client";
+import { addAppointmentData } from "@/services/appointmentData";
 import {Envelope} from "@gravity-ui/icons";
 import {Button,Select, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField, TimeField, DatePicker, DateField, Calendar, InputGroup} from "@heroui/react";
+import { date } from "better-auth";
+import toast from "react-hot-toast";
 
 const BookingCard = ({doctor}) => {
   const {data:session}=authClient.useSession()
   console.log(session);
   const user=session?.user
-  const {name}=doctor
+console.log(user);
+if(!user){
+  return null
+}
+const {name:userName,email,id}=user
 
-  const bookingData =(e)=>{
+  const {name:doctorName,_id,image,specialty,fee,location}=doctor
+
+  const bookingData =async(e)=>{
    e.preventDefault()
         const formData = new FormData(e.currentTarget)
     const newAppointment= Object.fromEntries(formData.entries())
-    console.log(newAppointment);
-
+  
+    const appointmentData={
+      userEmail:email,
+      userName:userName,
+      userId:id,
+      doctorName,
+      gender:newAppointment.gender,
+      phone:newAppointment.phone,
+      appointmentDate:newAppointment.date,
+     appointmentTime: newAppointment.time,
+patientName:newAppointment.patientName,
+doctorImage:image,
+specialty,
+fee,
+location
+ }
+ console.log(appointmentData);
+const res= await addAppointmentData(appointmentData)
+console.log(res);
+if(res.insertedId){
+  toast.success("Appointment booked successfully!")
+}else{
+  toast.error('something went to wrong')
+}
   }
     return (
          <Modal className="">
@@ -108,7 +139,7 @@ const BookingCard = ({doctor}) => {
   <InputGroup className="h-12 bg-gray-100 rounded-md px-3 flex items-center max-w-[365px]">
     <InputGroup.Input
       className="w-full h-full bg-transparent outline-none"
-      value={name}
+      value={doctorName}
     />
   </InputGroup>
 </TextField>

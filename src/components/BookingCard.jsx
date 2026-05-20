@@ -133,7 +133,7 @@ if(res.insertedId){
     </div>
 
   </div>
-<TextField name="doctorName" type="name" className="w-full">
+<TextField name="doctorName" type="text" className="w-full">
   <Label>Doctor Name</Label>
 
   <InputGroup className="h-12 bg-gray-100 rounded-md px-3 flex items-center max-w-[365px]">

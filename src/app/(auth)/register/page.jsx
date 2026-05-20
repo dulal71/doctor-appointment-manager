@@ -86,7 +86,7 @@ const googleSignIn=async()=>{
         </InputGroup>
       </TextField>
       
-       <TextField fullWidth name="imageUrl">
+       <TextField fullWidth name="imageUrl" type="url">
         <Label className="text-xl">Image URL</Label>
         <InputGroup fullWidth>
           <InputGroup.Input  className="rounded-md py-3 text-md"  placeholder="Enter password" type="url" />

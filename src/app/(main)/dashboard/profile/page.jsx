@@ -1,13 +1,14 @@
 'use client'
 import { authClient } from "@/app/lib/auth-client";
+import EditProfile from "@/components/EditProfile";
 import { Avatar, Button } from "@heroui/react";
-import { Edit } from "lucide-react";
+
 
 
 const Profile = () => {
     const {data:session}=authClient.useSession()
         const user=session?.user
-        console.log(user);
+        
     return (
         <div className="flex items-center justify-center">
             <div className="bg-white py-8 px-10 flex flex-col items-center md:flex-row md:items-start gap-10 rounded-xl shadow">
@@ -24,7 +25,7 @@ const Profile = () => {
                     <p>Bangledesh , Moulvi bazar</p>
                     </div>
                    <div className="flex items-center justify-center">
-                    <Button><Edit></Edit>Edit Profile</Button>
+           <EditProfile user={user}></EditProfile>
                    </div>
                 
                  </div>

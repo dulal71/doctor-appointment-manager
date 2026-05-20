@@ -1,11 +1,15 @@
 import DoctorCard from '@/components/DoctorCard';
 import SearchBar from '@/components/SearchBar';
+import SelectOptions from '@/components/SelectOptions';
 import { allDoctorData } from '@/services/doctorData';
 
 
-const AllAppointment =async () => {
-    const doctors= await allDoctorData()
-//   console.log(doctors);
+const AllAppointment =async ({searchParams}) => {
+   
+    const search = await searchParams
+
+    const doctors= await allDoctorData(search.search,search.specialty)
+console.log(doctors);
     return (
         <div >
 <div className="relative w-full h-[550px] bg-[url('/assets/second-banner.avif')] bg-cover bg-center">
@@ -28,8 +32,9 @@ const AllAppointment =async () => {
 </h2>
 <p>Trusted doctors with years of experience in patient care</p>
 </div>
-<div className='flex justify-center items-center'>
+<div className=' flex flex-col md:flex-row gap-3 items-center justify-center'>
      <SearchBar></SearchBar>
+     <SelectOptions></SelectOptions>
 </div>
             <div className='max-w-7xl mx-auto p-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center my-10'>
 

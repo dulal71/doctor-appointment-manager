@@ -36,9 +36,9 @@ if(res.deletedCount >0){
               <Button slot="close" variant="tertiary">
                 Cancel
               </Button>
-              <button  onClick={handleDelete} slot="close" variant="danger">
+              <Button  onClick={handleDelete} slot="close" variant="danger">
                 Delete 
-              </button>
+              </Button>
             </AlertDialog.Footer>
           </AlertDialog.Dialog>
         </AlertDialog.Container>

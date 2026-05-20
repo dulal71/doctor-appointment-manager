@@ -175,7 +175,7 @@ if(res.insertedId){
   </TextField>
 
   {/* Button */}
-  <Button type="submit" className="h-12 w-full bg-linear-to-r from-blue-500 to-cyan-500 text-white rounded-md">
+  <Button type="submit" slot="close" className="h-12 w-full bg-linear-to-r from-blue-500 to-cyan-500 text-white rounded-md">
     Adding Package
   </Button>
 

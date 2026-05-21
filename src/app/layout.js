@@ -1,19 +1,17 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {  Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+
+const montserrat = Montserrat({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+
 
 export const metadata = {
    title: "Doctor Appointment | Book Your Doctor Online",
@@ -26,16 +24,19 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+  className={montserrat.className}
     >
       <body className="min-h-full flex flex-col bg-white">
-            <SmoothScroll>
+            
+<SmoothScroll>
           <Navbar />
 
           {children}
 
           <Footer />
         </SmoothScroll>
+
+          
          <Toaster />
         </body>
     </html>

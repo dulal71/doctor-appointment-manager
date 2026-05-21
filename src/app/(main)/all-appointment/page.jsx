@@ -4,7 +4,7 @@ import SearchBar from '@/components/SearchBar';
 import SelectOptions from '@/components/SelectOptions';
 import { allDoctorData } from '@/services/doctorData';
 import { headers } from 'next/headers';
-
+ 
 
 const AllAppointment =async ({searchParams}) => {
    

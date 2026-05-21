@@ -11,7 +11,7 @@ const MarqueeTitle = () => {
   { id: 6, title: "24/7 Health Service" },
 ];
     return (
-        <div className="bg-linear-to-r from-blue-600 to-cyan-500">
+        <div className="bg-linear-to-r from-blue-600 to-cyan-500 my-15">
         <Marquee speed={100} pauseOnHover>
          {
             items.map(item=> <p key={item.id} className="px-6 py-3 text-white font-medium">

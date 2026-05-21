@@ -24,7 +24,7 @@ const TopDoctor = () => {
   }, []);
 
   return (
-    <div className="mx-auto space-y-8 flex flex-col justify-center items-center mt-10">
+    <div className="mx-auto space-y-8 flex flex-col justify-center items-center my-15">
         <div className="text-center space-y-5">
          <h2 className="text-3xl font-bold md:text-5xl ">Meet Our Top Specialists</h2>  
          <p className="text-xl text-zinc-500">We bring you the most trusted healthcare professionals with excellent ratings and experience.</p> 

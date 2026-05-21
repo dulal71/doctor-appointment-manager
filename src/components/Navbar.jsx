@@ -123,22 +123,68 @@ const Navbar = () => {
       </div>
 
       {/* MOBILE MENU */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white border-t px-4 py-3">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              href={link.path}
-              onClick={() => setIsMenuOpen(false)}
-              className={`block py-2 ${
-                pathname === link.path ? "text-blue-600" : "text-gray-700"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </div>
+   {isMenuOpen && (
+  <div className="md:hidden bg-white border-t px-4 py-3 space-y-2 animate-in fade-in slide-in-from-top-2">
+    
+    {/* NAV LINKS */}
+    {navLinks.map((link) => (
+      <Link
+        key={link.path}
+        href={link.path}
+        onClick={() => setIsMenuOpen(false)}
+        className={`block py-2 rounded-md px-2 transition ${
+          pathname === link.path
+            ? "text-blue-600 bg-blue-50 font-medium"
+            : "text-gray-700"
+        }`}
+      >
+        {link.name}
+      </Link>
+    ))}
+
+    {/* AUTH SECTION */}
+    <div className="pt-3 border-t mt-2 flex flex-col gap-2">
+      {user ? ( <div className="flex justify-between items-center"> 
+        
+         <div className="flex gap-2 items-center">
+          <Avatar>
+                <Avatar.Image src={user.image} />
+                <Avatar.Fallback>{user.name?.charAt(0)}</Avatar.Fallback>
+              </Avatar>
+              <h3>{user?.name}</h3>
+         </div>
+        
+        
+         <Button
+          onClick={signOut}
+          className=" bg-black text-white flex items-center justify-center gap-2"
+        >
+          <LogOutIcon size={18} />
+          Logout
+        </Button>
+         </div>
+       
+      ) : (
+        <>
+          <Link href="/login" onClick={() => setIsMenuOpen(false)}>
+            <Button className="w-full bg-blue-600 flex items-center justify-center gap-2">
+              <LockOpen size={18} />
+              Login
+            </Button>
+          </Link>
+
+          <Link href="/register" onClick={() => setIsMenuOpen(false)}>
+            <Button className="w-full bg-black flex items-center justify-center gap-2">
+              <UserCog size={18} />
+              Register
+            </Button>
+          </Link>
+        </>
       )}
+    </div>
+  </div>
+)}
+     
     </nav>
   );
 };

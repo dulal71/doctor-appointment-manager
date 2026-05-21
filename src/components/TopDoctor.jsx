@@ -12,7 +12,7 @@ const TopDoctor = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/topDoctors");
+        const res = await fetch("https://doc-appoint-server-bay.vercel.app/topDoctors");
         const data = await res.json();
         setDoctors(data);
       } catch (error) {

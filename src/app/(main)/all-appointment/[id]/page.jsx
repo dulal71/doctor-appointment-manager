@@ -11,7 +11,15 @@ import {
 import BookingCard from "@/components/BookingCard";
 import { auth } from "@/app/lib/auth";
 import { headers } from "next/headers";
-
+export const generateMetadata = async({params})=>{
+  const { id } = await params;
+  const doctor = await doctorDataById(id)
+  console.log(doctor);
+  return{
+    title:doctor.name,
+     description: doctor.description
+  }
+}
 const DoctorDetails = async ({ params }) => {
 
   const {token}=await auth.api.getToken({

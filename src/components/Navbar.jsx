@@ -31,9 +31,11 @@ const Navbar = () => {
   ];
 
   const signOut = async () => {
+    
     await authClient.signOut({});
-     router.refresh();
-    router.replace("/login");
+    window.location.reload()
+    router.push("/login");
+    
    
   };
 

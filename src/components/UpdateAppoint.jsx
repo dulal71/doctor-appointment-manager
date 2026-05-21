@@ -3,12 +3,13 @@ import { updateAppoint } from "@/services/appointmentData";
 import {Envelope} from "@gravity-ui/icons";
 import {Button, DateField, Description, Input, Label, Modal, Surface, TextField, TimeField} from "@heroui/react";
 import { Edit } from "lucide-react";
-import { useState } from "react";
+import toast from "react-hot-toast";
+
 
 const UpdateAppoint = ({doctor}) => {
 
     const {patientName,userEmail,doctorName,_id,appointmentTime}=doctor
-   const [time,setTime]=useState(appointmentTime)
+ 
     const update=async(e)=>{
 e.preventDefault()
 const formData = new FormData(e.currentTarget)
@@ -21,7 +22,11 @@ const updateData={
 patientName:patientName,
 }
 const res = await updateAppoint(_id,updateData)
-console.log(res);
+if(res.modifiedCount > 0 ){
+  toast.success("Appointment updated successfully")
+}else{
+  toast.error('Something went to  wrong')
+}
    }
     return (
          <Modal>
@@ -55,24 +60,27 @@ console.log(res);
                     <Label>Patient Name</Label>
                     <Input value={patientName} />
                   </TextField>
-                 <DateField className="w-full" name="date" isRequired>
-      <Label>Date</Label>
-      <DateField.Group>
-        <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
-      </DateField.Group>
-    </DateField>  
-       <TimeField value={time} onChange={setTime} className="w-full" name="time">
-        <Label>Appointment time</Label>
-        <TimeField.Group>
-          <TimeField.Input >{(segment) => <TimeField.Segment segment={segment} />}</TimeField.Input>
-        </TimeField.Group>
-        
-      </TimeField>
+           <div className="w-full">
+  <Label>Date</Label>
+  <input
+    type="date"
+    name="date"
+    required
+    defaultValue={doctor?.appointmentDate}
+     className="w-full bg-white outline-none shadow  rounded-2xl px-3 py-2"
+  />
+</div>       
+       <input
+  type="time"
+  name="time"
+   className="w-full bg-white outline-none shadow  rounded-2xl px-3 py-2"
+  defaultValue={appointmentTime?.slice(0,5)}
+/>
       <Modal.Footer>
               <Button slot="close" variant="secondary">
                 Cancel
               </Button>
-              <Button type="submit">Update</Button>
+              <Button slot="close"  type="submit">Update</Button>
             </Modal.Footer>              
                 </form>
               </Surface>

@@ -1,17 +1,22 @@
 'use server'
 
-export const allDoctorData = async(search="",specialty="")=>{
-    const res = await fetch(`${process.env.SERVER_URL}/doctors?search=${search}&specialty=${specialty}`)
+export const allDoctorData = async(search="",specialty="",token)=>{
+    const res = await fetch(`${process.env.SERVER_URL}/doctors?search=${search}&specialty=${specialty}`,{
+          headers:{
+        authorization:`Bearer ${token}`
+      }      
+    })
     const data = await res.json()
     return data;
 }
-export const topDoctors = async()=>{
-    const res = await fetch(`${process.env.SERVER_URL}/topDoctors`)
-    const data = await res.json()
-    return data;
-}
-export const doctorDataById = async(id)=>{
-    const res = await fetch(`${process.env.SERVER_URL}/doctors/${id}`)
+
+export const doctorDataById = async(id,token)=>{
+   
+    const res = await fetch(`${process.env.SERVER_URL}/doctors/${id}`,{
+      headers:{
+        authorization:`Bearer ${token}`
+      }  
+    })
     const data = await res.json()
     return data;
 }

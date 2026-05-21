@@ -47,7 +47,7 @@ if(data){
 
     return (
         <div className="flex items-center justify-center py-14">
-       <div className="bg-white shadow py-6 px-8 space-y-4 rounded-md">
+       <div className="bg-white shadow py-6 px-10 space-y-6 rounded-md">
              <div className="flex flex-col items-center justify-center gap-3">
     <div className="w-12 p-2  bg-linear-to-r from-blue-600 to-cyan-500 rounded-xl group-hover:rotate-12 transition-transform">
                 <Stethoscope className="w-8 h-8 text-white" />
@@ -60,7 +60,7 @@ if(data){
             </div>
 
          <div>
-             <Form onSubmit={handleLogin} className="flex w-80 flex-col gap-6" >
+             <Form onSubmit={handleLogin} className="flex w-80 flex-col gap-10" >
       <TextField
         isRequired
         name="email"
@@ -109,17 +109,14 @@ if(data){
     </Form>
     </div> 
     <p className="text-center">Or login with</p>
-    <div className="flex justify-evenly items-center">
+    <div className="flex justify-center items-center">
 {/* google */}
-<div onClick={googleLogIn} className="cursor-pointer flex items-center gap-2">
+<div onClick={googleLogIn} className="cursor-pointer flex items-center justify-center  gap-2 border rounded-md w-full ">
 <Image src="/assets/google-logo.webp" width={30} height={30} alt="google-logo" />
 Google
 </div>
 {/* github */}
-<div className="cursor-pointer flex items-center gap-2">
-<Image src="/assets/github-logo.png" width={25} height={25} alt="google-logo" />
-Github
-</div>
+
  </div>
 <Link href={'/register'}>
 <p  className="text-center text-red-600">Register new account</p>

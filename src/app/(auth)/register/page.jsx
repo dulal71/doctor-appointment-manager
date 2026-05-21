@@ -141,18 +141,15 @@ const googleSignIn=async()=>{
     </Form>      
     </div> 
     <p className="text-center">Or login with</p>
-    <div className="flex justify-evenly items-center">
-{/* google */}
-<div onClick={googleSignIn} className="cursor-pointer flex items-center gap-2 ">
-<Image src="/assets/google-logo.webp" width={30} height={30} alt="google-logo" />
-Google
-</div>
-{/* github */}
-<div className="cursor-pointer flex items-center gap-2 ">
-<Image src="/assets/github-logo.png" width={25} height={25} alt="google-logo" />
-Github
-</div>
- </div>
+        <div className="flex justify-center items-center">
+    {/* google */}
+    <div onClick={googleSignIn} className="cursor-pointer flex items-center justify-center  gap-2 border rounded-md w-full ">
+    <Image src="/assets/google-logo.webp" width={30} height={30} alt="google-logo" />
+    Google
+    </div>
+    {/* github */}
+    
+     </div>
 <Link href={'/login'}>
 <p  className="text-center text-red-600">Already have an account? Login</p>
 </Link>    

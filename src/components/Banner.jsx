@@ -36,7 +36,7 @@ const Banner = () => {
   return (
     <div className="relative h-[450px] md:h-[550px] lg:h-[80vh] w-full overflow-hidden">
 
-      {/* IMAGE (NO BLUR, ONLY SLIDE) */}
+     
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -51,10 +51,10 @@ const Banner = () => {
         />
       </AnimatePresence>
 
-      {/* DARK OVERLAY */}
+    
       <div className="absolute inset-0 bg-black/50" />
 
-      {/* TEXT CONTENT */}
+    
       <div className="relative z-10 h-full flex items-center px-6 md:px-16">
 
         <AnimatePresence mode="wait">

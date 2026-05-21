@@ -9,3 +9,11 @@
   --danger: #EF4444;
   --warning: #F59E0B;
 }
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  overflow-x: hidden;
+}

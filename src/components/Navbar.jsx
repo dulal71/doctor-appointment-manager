@@ -31,9 +31,10 @@ const Navbar = () => {
   ];
 
   const signOut = async () => {
-    await authClient.signOut();
+    await authClient.signOut({});
+     router.refresh();
     router.replace("/login");
-    router.refresh();
+   
   };
 
   return (
@@ -46,7 +47,7 @@ const Navbar = () => {
 
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="p-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500">
+          <div className="p-2 rounded-xl bg-linear-to-r from-blue-600 to-cyan-500">
             <Stethoscope className="text-white" />
           </div>
           <span className="text-2xl font-semibold">DocAppoint</span>

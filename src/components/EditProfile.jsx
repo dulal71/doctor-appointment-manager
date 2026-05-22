@@ -22,7 +22,7 @@ const EditProfile = ({ user }) => {
   e.preventDefault();
 const data = await authClient.updateUser({
    name,
-    imageUrl,
+    image,
 })
   if(data){
     toast.success("Profile updated successfully!")
@@ -83,7 +83,7 @@ const data = await authClient.updateUser({
 
                   {/* Buttons */}
                   <div className="flex justify-end gap-3 pt-4">
-                    <Button variant="secondary" type="button">
+                    <Button variant="secondary" type="button" slot="close">
                       Cancel
                     </Button>
 

@@ -53,7 +53,7 @@ if(res.insertedId){
   }
     return (
          <Modal className="">
-<Button className="w-full bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white font-semibold py-4 rounded-2xl shadow-md cursor-pointer">
+<Button className="w-full bg-linear-to-r from-blue-500 to-cyan-500  hover:bg-blue-700 transition-all duration-300 text-white font-semibold py-4 rounded-2xl shadow-md cursor-pointer">
               Book Appointment
             </Button>
       <Modal.Backdrop>

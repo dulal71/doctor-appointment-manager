@@ -1,3 +1,4 @@
+import { Button } from "@heroui/react";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,7 +38,7 @@ const DoctorCard = ({doctor}) => {
 
     {/* Optional button */}
     <Link href={`/all-appointment/${_id}`}>
-    <button className="mt-3 w-full bg-linear-to-r from-blue-600 to-cyan-500 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+    <button className="mt-3 w-full bg-linear-to-r from-blue-600 to-cyan-500 text-white py-2 rounded-lg hover:bg-blue-900 transition">
       View Profile
     </button>
     </Link>

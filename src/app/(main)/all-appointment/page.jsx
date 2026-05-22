@@ -4,6 +4,7 @@ import SearchBar from '@/components/SearchBar';
 import SelectOptions from '@/components/SelectOptions';
 import { allDoctorData } from '@/services/doctorData';
 import { headers } from 'next/headers';
+import { GiToken } from 'react-icons/gi';
  
 
 const AllAppointment =async ({searchParams}) => {
@@ -12,7 +13,7 @@ const AllAppointment =async ({searchParams}) => {
 const {token}=await auth.api.getToken({
     headers:await headers()
 })
-    const doctors= await allDoctorData(search.search,search.specialty)
+    const doctors= await allDoctorData(search.search,search.specialty,token)
 
     return (
         <div >

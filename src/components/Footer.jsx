@@ -1,6 +1,9 @@
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+
 import Link from "next/link";
 import { Stethoscope } from "lucide-react";
+import { GitBranch } from "lucide";
+import { LogoLinkedin } from "@gravity-ui/icons";
+
 
 const Footer = () => {
   return (
@@ -36,21 +39,8 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex items-center gap-4 mt-6 text-gray-400">
-            <Link href="#" className="hover:text-cyan-400 transition">
-              <Facebook className="w-5 h-5" />
-            </Link>
+           
 
-            <Link href="#" className="hover:text-cyan-400 transition">
-              <Twitter className="w-5 h-5" />
-            </Link>
-
-            <Link href="#" className="hover:text-cyan-400 transition">
-              <Instagram className="w-5 h-5" />
-            </Link>
-
-            <Link href="#" className="hover:text-cyan-400 transition">
-              <Linkedin className="w-5 h-5" />
-            </Link>
           </div>
         </div>
 
@@ -65,7 +55,7 @@ const Footer = () => {
               Home
             </Link>
 
-            <Link href="/doctors" className="hover:text-cyan-400 transition-all hover:translate-x-1">
+            <Link href="/all-appointment" className="hover:text-cyan-400 transition-all hover:translate-x-1">
               Doctors
             </Link>
 

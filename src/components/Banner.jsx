@@ -8,17 +8,17 @@ const Banner = () => {
     const slides = [
   {
     image: "/assets/banner-image-1.jpg",
-    title: "Book Your Doctor Appointment Easily",
+    title: "Book Your Doctor Appointment Easily.",
     desc: "Find trusted doctors and get fast medical care anytime, anywhere.",
   },
   {
     image: "/assets/banner-image-4.avif",
-    title: "Trusted Healthcare Professionals",
+    title: "Trusted Healthcare Professionals .",
     desc: "Connect with experienced doctors for better treatment and care.",
   },
   {
     image: "/assets/banner-image-3.avif",
-    title: "Trusted Healthcare Professionals",
+    title: "Trusted Healthcare Professionals .",
     desc: "Connect with experienced doctors for better treatment and care.",
   },
   
@@ -66,7 +66,7 @@ const Banner = () => {
             exit={{ x: -150, opacity: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold leading-tight bg-linear-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
               {slides[current].title}
             </h1>
 
@@ -81,6 +81,37 @@ const Banner = () => {
             </Link>
           </motion.div>
         </AnimatePresence>
+<div className="absolute right-4 md:right-14 top-1/2 -translate-y-1/2 z-20  flex  flex-col lg:flex-row gap-12">
+  
+  {/*  tooltip 1 */}
+  <motion.div
+    initial={{ y: -60, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
+  >
+    <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white md:px-8 md:py-8 rounded-xl shadow-lg w-64">
+      <p className="text-base font-semibold md:text-2xl">Quick Guide</p>
+      <p className="text-sm text-gray-200 mt-1">
+        Choose doctor → Book appointment in 2 steps
+      </p>
+    </div>
+  </motion.div>
+
+  {/* 🟩 Tooltip 2 */}
+  <motion.div
+    initial={{ y: -60, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ duration: 0.9, delay: 0.4, ease: "easeOut" }}
+  >
+    <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-8 rounded-xl shadow-lg w-64">
+      <p className="text-base font-semibold md:text-2xl">Why Us?</p>
+      <p className="text-sm text-gray-200 mt-1">
+        Verified doctors & secure fast booking system
+      </p>
+    </div>
+  </motion.div>
+
+</div>
 
       </div>
     </div>

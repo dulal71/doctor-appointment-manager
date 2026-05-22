@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { div } from "framer-motion/client";
 import { UserRoundSearch, Tablets, TestTubeDiagonal } from "lucide-react";
 
-const Fined = () => {
+const Find = () => {
   const services = [
     {
       name: "Visit a Doctor",
@@ -95,4 +95,4 @@ const Fined = () => {
   );
 };
 
-export default Fined;
+export default Find;

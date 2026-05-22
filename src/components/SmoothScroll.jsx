@@ -8,9 +8,13 @@ export default function SmoothScroll({ children }) {
       root
       options={{
         duration: 1.2,
+        orientation:"vertical",
+        gestureOrientation:"vertical",
+        wheelMultiplier:1,
+        touchMultiplier:2,
         smoothWheel: true,
         smoothTouch: false,
-        lerp: 0.08,
+        lerp: 0.1,
       }}
     >
       {children}

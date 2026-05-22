@@ -8,6 +8,7 @@ import { date } from "better-auth";
 import toast from "react-hot-toast";
 
 const BookingCard = ({doctor}) => {
+ 
   const {data:session}=authClient.useSession()
   console.log(session);
   const user=session?.user
@@ -39,8 +40,10 @@ specialty,
 fee,
 location
  }
- console.log(appointmentData);
-const res= await addAppointmentData(appointmentData)
+
+  const {data:tokenData}=await authClient.token()
+
+const res= await addAppointmentData(appointmentData,tokenData.token)
 console.log(res);
 if(res.insertedId){
   toast.success("Appointment booked successfully!")

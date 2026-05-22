@@ -2,20 +2,25 @@
 
 import { revalidatePath } from "next/cache";
 
-export const getAppointmentData = async(id)=>{
+export const getAppointmentData = async(id,token)=>{
 
-  const res=await fetch(`${process.env.SERVER_URL}/appointmentDoctors/${id}`)
+const res=await fetch(`${process.env.SERVER_URL}/appointmentDoctors/${id}`,{
+    headers:{
+        authorization:`Bearer ${token}`
+      }  
+  })
  const data = await res.json()
   return data
 }
 
 
 //add appointment data
-export const addAppointmentData=async(appointmentData)=>{
+export const addAppointmentData=async(appointmentData,token)=>{
   const res = await fetch(`${process.env.SERVER_URL}/appointmentDoctors`,{
     method:"POST",
     headers:{
-        'Content-type':'application/json'
+        'Content-type':'application/json',
+          authorization:`Bearer ${token}` 
     },
     body:JSON.stringify(appointmentData)
   })  
@@ -24,13 +29,14 @@ export const addAppointmentData=async(appointmentData)=>{
 }
 
 // add appointment data
-export const deleteAppoint = async(id)=>{
+export const deleteAppoint = async(id,token)=>{
 
   const res=await fetch(`${process.env.SERVER_URL}/appointmentDoctors/${id}`,{
     method:"DELETE",
     headers:{
         
-      "Content-type":"application/json"
+      "Content-type":"application/json",
+        authorization:`Bearer ${token}` 
      
     }
   })
@@ -42,11 +48,12 @@ revalidatePath('/dashboard')
   return data
 }
 // add update data 
-export const updateAppoint= async(_id,updateData)=>{
+export const updateAppoint= async(_id,updateData,token)=>{
  const res=await fetch(`${process.env.SERVER_URL}/appointmentDoctors/${_id}`,{
     method:"PATCH",
     headers:{
-         "Content-type":"application/json"
+         "Content-type":"application/json",
+           authorization:`Bearer ${token}` 
 },
 body:JSON.stringify(updateData)
   })

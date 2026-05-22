@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/app/lib/auth-client";
 import { updateAppoint } from "@/services/appointmentData";
 import {Envelope} from "@gravity-ui/icons";
 import {Button, DateField, Description, Input, Label, Modal, Surface, TextField, TimeField} from "@heroui/react";
@@ -21,7 +22,8 @@ const updateData={
      appointmentTime:data.time,
 patientName:patientName,
 }
-const res = await updateAppoint(_id,updateData)
+ const {data:tokenData}=await authClient.token()
+const res = await updateAppoint(_id,updateData,tokenData.token)
 if(res.modifiedCount > 0 ){
   toast.success("Appointment updated successfully")
 }else{

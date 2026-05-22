@@ -13,6 +13,7 @@ const AllAppointment =async ({searchParams}) => {
 const {token}=await auth.api.getToken({
     headers:await headers()
 })
+console.log(token);
     const doctors= await allDoctorData(search.search,search.specialty,token)
 
     return (

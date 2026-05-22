@@ -1,4 +1,5 @@
 'use client'
+import { authClient } from "@/app/lib/auth-client";
 import { deleteAppoint } from "@/services/appointmentData";
 import { AlertDialog, Button } from "@heroui/react";
 import { Delete } from "lucide-react";
@@ -8,7 +9,8 @@ import toast from "react-hot-toast";
 const DeleteAppoint = ({doctor}) => {
    
     const handleDelete=async()=>{
-const res = await deleteAppoint(doctor._id)
+       const {data:tokenData}=await authClient.token()
+const res = await deleteAppoint(doctor._id,tokenData.token)
 if(res.deletedCount >0){
     toast.success("Delete Appointment Successfully")
 }else{

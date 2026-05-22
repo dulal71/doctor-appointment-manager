@@ -14,7 +14,11 @@ const Dashboard =async () => {
  })
  const user=session?.user
  console.log(user);
-    const doctors=await getAppointmentData(user.id)
+ const {token}=await auth.api.getToken({
+  headers:await headers()
+ })
+
+    const doctors=await getAppointmentData(user.id,token)
     
 
     return (

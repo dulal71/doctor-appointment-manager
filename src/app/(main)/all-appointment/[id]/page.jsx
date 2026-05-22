@@ -40,6 +40,7 @@ const DoctorDetails = async ({ params }) => {
     availability,
     hospital,
     fee,
+    rating
   } = doctor;
 
   return (
@@ -82,7 +83,7 @@ const DoctorDetails = async ({ params }) => {
                   <Star className="fill-yellow-400" size={20} />
 
                   <span className="text-slate-600 text-sm ml-2">
-                    5.0 Rating
+                   {rating}
                   </span>
                 </div>
 

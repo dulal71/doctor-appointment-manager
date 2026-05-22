@@ -1,8 +1,7 @@
 
 import Link from "next/link";
 import { Stethoscope } from "lucide-react";
-import { GitBranch } from "lucide";
-import { LogoLinkedin } from "@gravity-ui/icons";
+import { FaFacebookF, FaInstagram, FaGithub } from "react-icons/fa";
 
 
 const Footer = () => {
@@ -40,7 +39,17 @@ const Footer = () => {
           {/* Social Icons */}
           <div className="flex items-center gap-4 mt-6 text-gray-400">
            
+ <a href="https://facebook.com" target="_blank" rel="noreferrer">
+    <FaFacebookF className="hover:text-blue-500 cursor-pointer transition" />
+  </a>
 
+  <a href="https://instagram.com" target="_blank" rel="noreferrer">
+    <FaInstagram className="hover:text-pink-500 cursor-pointer transition" />
+  </a>
+
+  <a href="https://github.com" target="_blank" rel="noreferrer">
+    <FaGithub className="hover:text-white cursor-pointer transition" />
+  </a>
           </div>
         </div>
 

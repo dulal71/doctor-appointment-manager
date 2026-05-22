@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import { icons } from "lucide-react";
 
 
 const montserrat = Montserrat({
@@ -18,6 +19,9 @@ export const metadata = {
   description:
     "Find and book doctor appointments easily. Search specialists, view profiles, and schedule visits in a few clicks.",
   keywords: ["doctor", "appointment", "healthcare", "online booking"],
+  icons:{
+    icon:"/stethoscope.svg"
+  }
 };
 
 export default function RootLayout({ children }) {

@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const EditProfile = ({ user }) => {
   const [name,setName]=useState("")
-  const [imageUrl,setImageUrl]=useState("")
+  const [image,setImageUrl]=useState("")
 
   useEffect(() => {
     if (user) {
@@ -24,6 +24,7 @@ const data = await authClient.updateUser({
    name,
     image,
 })
+console.log(data);
   if(data){
     toast.success("Profile updated successfully!")
   }else{
@@ -76,7 +77,7 @@ const data = await authClient.updateUser({
                     <Label>Image URL</Label>
                     <Input
                       name="imageUrl"
-                      value={imageUrl}
+                      value={image}
                       onChange={(e)=>setImageUrl(e.target.value)}
                     />
                   </TextField>

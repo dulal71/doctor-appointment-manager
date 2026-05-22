@@ -74,7 +74,7 @@ if(res.insertedId){
   {/* Row 1 */}
   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-    <TextField name="patientName" type="text" className="w-full">
+    <TextField name="patientName" type="text" className="w-full" isRequired>
       <Label>Patient Name</Label>
       <InputGroup className="h-12 bg-gray-100 rounded-md px-3 flex items-center">
         <InputGroup.Input
@@ -103,7 +103,7 @@ if(res.insertedId){
   {/* Row 2 */}
   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-    <TextField name="phone" type="number" className="w-full">
+    <TextField name="phone" type="number" className="w-full" isRequired>
       <Label>Phone</Label>
       <InputGroup className="h-12 bg-gray-100 rounded-md px-3 flex items-center">
         <InputGroup.Input

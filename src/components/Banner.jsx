@@ -81,13 +81,13 @@ const Banner = () => {
             </Link>
           </motion.div>
         </AnimatePresence>
-<div className="absolute right-4 md:right-14 top-1/2 -translate-y-1/2 z-20  flex  flex-col lg:flex-row gap-12">
+<div className=" hidden md:flex  absolute right-4 md:right-14 top-1/2 -translate-y-1/2 z-20   flex-col lg:flex-row gap-12">
   
   {/*  tooltip 1 */}
   <motion.div
     initial={{ y: -60, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
-    transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
+    transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
   >
     <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white md:px-8 md:py-8 rounded-xl shadow-lg w-64">
       <p className="text-base font-semibold md:text-2xl">Quick Guide</p>
@@ -97,11 +97,11 @@ const Banner = () => {
     </div>
   </motion.div>
 
-  {/* 🟩 Tooltip 2 */}
+  {/*  Tooltip 2 */}
   <motion.div
     initial={{ y: -60, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
-    transition={{ duration: 0.9, delay: 0.4, ease: "easeOut" }}
+    transition={{ duration:1, delay: 0.4, ease: "easeOut" }}
   >
     <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-8 rounded-xl shadow-lg w-64">
       <p className="text-base font-semibold md:text-2xl">Why Us?</p>

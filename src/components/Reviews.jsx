@@ -1,5 +1,6 @@
 import { div } from "framer-motion/client";
 import { Quote, Star } from "lucide-react";
+import Image from "next/image";
 const reviews = [
   {
     id: 1,
@@ -72,15 +73,15 @@ const ReviewCard = () => {
   
 ];
   return (
-    <div className="my-15 space-y-5">
+    <div className="my-15 space-y-5 px-2">
 <div className="flex flex-col justify-center items-center  ">
     <p className="bg-linear-to-r from-blue-500 to-sky-500 px-3  rounded-2xl text-white text-2xl flex items-center gap-2"><Star size={10}></Star> Testimonials <Star size={10}></Star></p>
-    <p className="text-4xl font-bold mt-5">15K User Trust DocAppoint Website</p>
+    <p className="text-4xl text-center font-bold mt-5">15K User Trust DocAppoint Website</p>
 </div>
 
-     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-2 md:p-2">
      {
-        reviews.map(review=><div key={review.id} className="w-full max-w-md bg-white rounded-2xl p-6 shadow-md border hover:shadow-lg transition relative">
+        reviews.map(review=><div key={review.id} className="w-full max-w-md bg-white rounded-2xl p-3 md:p-6 shadow-md border hover:shadow-lg transition relative">
 
       {/* Quote Icon */}
       <Quote className="absolute right-5 top-5 text-orange-500 w-8 h-8 opacity-80" />
@@ -104,8 +105,10 @@ const ReviewCard = () => {
 
       {/* User Info */}
       <div className="flex items-center gap-3 mt-5">
-        <img
+        <Image
           src={review.image}
+          width={44}
+          height={44}
           alt={review.name}
           className="w-11 h-11 rounded-full object-cover border"
         />

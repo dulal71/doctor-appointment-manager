@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import DoctorCard from "./DoctorCard";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const TopDoctor = () => {
   const [doctors, setDoctors] = useState([]);
@@ -24,7 +25,16 @@ const TopDoctor = () => {
   }, []);
 
   return (
-    <div className="mx-auto space-y-8 flex flex-col justify-center items-center my-15">
+    <div className="mx-auto space-y-8 flex flex-col justify-center items-center ">
+     <div className="flex justify-center items-center">
+       <Image
+         src="/assets/Tape Medical.svg"
+         alt="doctor"
+         width={400}
+         height={200}
+         className="w-[1000px] h-[300px]"
+       />
+     </div>
         <div className="text-center space-y-5">
          <h2 className="text-3xl font-bold md:text-5xl ">Meet Our Top Specialists</h2>  
          <p className="text-xl text-zinc-500">We bring you the most trusted healthcare professionals with excellent ratings and experience.</p> 

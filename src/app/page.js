@@ -2,6 +2,7 @@ import AppointmentSection from "@/components/AppointmentSection";
 import Banner from "@/components/Banner";
 import Find from "@/components/Find";
 import MarqueeTitle from "@/components/MarqueeTitle";
+import MyLottie from "@/components/NewsLetter";
 import Reviews from "@/components/Reviews";
 import TopDoctor from "@/components/TopDoctor";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -14,6 +15,7 @@ export default function Home() {
      <TopDoctor></TopDoctor>
      <Find></Find>
      <WhyChooseUs></WhyChooseUs>
+   
       <AppointmentSection></AppointmentSection>
      <MarqueeTitle></MarqueeTitle>
      <Reviews></Reviews>

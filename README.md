@@ -73,8 +73,8 @@ doctor-appointment/
 
 ⚙️ Installation & Setup
 1️⃣ Clone Repository
-git clone https://github.com/your-username/doctor-appointment.git
-
+git clone : https://github.com/dulal71/doctor-appointment-manager
+Live link : https://doctor-appointment-manager-six.vercel.app/
 2️⃣ Install Frontend
 cd client
 npm install
